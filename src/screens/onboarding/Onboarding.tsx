@@ -22,6 +22,12 @@ interface ISlide {
   subTitle: string;
 }
 
+interface IFooter {
+  currentIndex: number;
+  goToNextSlide: () => void;
+  skip: () => void;
+}
+
 const slides: ISlide[] = [
   {
     id: '1',
@@ -90,55 +96,6 @@ const Slide: React.FunctionComponent<{item: ISlide} & IFooter> = ({
   );
 };
 
-const slideStyles = StyleSheet.create({
-  container: {
-    paddingTop: 10,
-    flex: 1,
-    position: 'relative',
-  },
-  image: {
-    height: '62%',
-    // resizeMode: 'contain',
-  },
-  title: {
-    fontSize: 22,
-    maxWidth: 295,
-    width: '100%',
-    fontWeight: '500',
-    lineHeight: 34,
-    textAlign: 'center',
-    marginBottom: 15,
-    color: '#ffffff',
-  },
-  subTitle: {
-    fontSize: 15,
-    maxWidth: 295,
-    width: '100%',
-    fontWeight: '400',
-    lineHeight: 25,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    height: 288,
-    paddingVertical: 30,
-    // paddingHorizontal: 50,
-    borderTopLeftRadius: 48,
-    borderTopRightRadius: 48,
-    backgroundColor: '#5669FF',
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
-
-interface IFooter {
-  currentIndex: number;
-  goToNextSlide: () => void;
-  skip: () => void;
-}
-
 // const Footer: React.FunctionComponent<IFooter> = ({
 //   currentIndex,
 //   goToNextSlide,
@@ -171,41 +128,6 @@ interface IFooter {
 //     </View>
 //   );
 // };
-
-const footerStyles = StyleSheet.create({
-  footerContainer: {
-    display: 'flex',
-    marginTop: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 60,
-  },
-  section: {
-    maxWidth: 295,
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  indicatorContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  indicator: {
-    width: 10,
-    height: 10,
-    borderRadius: 50,
-    backgroundColor: '#ffffff',
-    opacity: 0.4,
-    marginHorizontal: 4,
-  },
-  controls: {
-    fontSize: 20,
-    fontWeight: '500',
-    color: '#ffffff',
-  },
-});
 
 const OnBoardingScreen: React.FunctionComponent = () => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -278,6 +200,84 @@ const styles = StyleSheet.create({
   },
   flatList: {
     flexGrow: 1,
+  },
+});
+
+const slideStyles = StyleSheet.create({
+  container: {
+    paddingTop: 10,
+    flex: 1,
+    position: 'relative',
+  },
+  image: {
+    height: '62%',
+    // resizeMode: 'contain',
+  },
+  title: {
+    fontSize: 22,
+    maxWidth: 295,
+    width: '100%',
+    fontWeight: '500',
+    lineHeight: 34,
+    textAlign: 'center',
+    marginBottom: 15,
+    color: '#ffffff',
+  },
+  subTitle: {
+    fontSize: 15,
+    maxWidth: 295,
+    width: '100%',
+    fontWeight: '400',
+    lineHeight: 25,
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    height: 288,
+    paddingVertical: 30,
+    // paddingHorizontal: 50,
+    borderTopLeftRadius: 48,
+    borderTopRightRadius: 48,
+    backgroundColor: '#5669FF',
+    display: 'flex',
+    alignItems: 'center',
+  },
+});
+
+const footerStyles = StyleSheet.create({
+  footerContainer: {
+    display: 'flex',
+    marginTop: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 60,
+  },
+  section: {
+    maxWidth: 295,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  indicatorContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  indicator: {
+    width: 10,
+    height: 10,
+    borderRadius: 50,
+    backgroundColor: '#ffffff',
+    opacity: 0.4,
+    marginHorizontal: 4,
+  },
+  controls: {
+    fontSize: 20,
+    fontWeight: '500',
+    color: '#ffffff',
   },
 });
 
