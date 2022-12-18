@@ -1,8 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 import {
   FlatList,
   Image,
   ImageSourcePropType,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -65,14 +68,15 @@ const slideStyles = StyleSheet.create({
     paddingTop: 10,
     flex: 1,
     position: 'relative',
-    // backgroundColor: '#ffffff',
   },
   image: {
     height: '62%',
     // resizeMode: 'contain',
   },
   title: {
-    fontSize: 25,
+    fontSize: 22,
+    maxWidth: 295,
+    width: '100%',
     fontWeight: '500',
     lineHeight: 34,
     textAlign: 'center',
@@ -80,7 +84,9 @@ const slideStyles = StyleSheet.create({
     color: '#ffffff',
   },
   subTitle: {
-    fontSize: 17,
+    fontSize: 15,
+    maxWidth: 295,
+    width: '100%',
     fontWeight: '400',
     lineHeight: 25,
     textAlign: 'center',
@@ -90,31 +96,51 @@ const slideStyles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     height: 288,
-    paddingVertical: 40,
-    paddingHorizontal: 50,
+    paddingVertical: 30,
+    // paddingHorizontal: 50,
     borderTopLeftRadius: 48,
     borderTopRightRadius: 48,
     backgroundColor: '#5669FF',
+    display: 'flex',
+    alignItems: 'center',
   },
 });
 
-const Footer: React.FunctionComponent = () => {
+interface IFooter {
+  currentIndex: number;
+  goToNextSlide: () => void;
+  skip: () => void;
+}
+
+const Footer: React.FunctionComponent<IFooter> = ({
+  currentIndex,
+  goToNextSlide,
+  skip,
+}) => {
   const {width} = useWindowDimensions();
 
   return (
     <View style={[footerStyles.footerContainer, {width: width}]}>
-      <TouchableOpacity>
-        <Text style={[footerStyles.controls]}>Skip</Text>
-      </TouchableOpacity>
-      <View style={footerStyles.indicatorContainer}>
-        {slides.map(item => (
-          <View key={item.id} style={footerStyles.indicator} />
-        ))}
-      </View>
+      <View style={footerStyles.section}>
+        <TouchableOpacity onPress={skip}>
+          <Text style={[footerStyles.controls, {opacity: 0.5}]}>Skip</Text>
+        </TouchableOpacity>
+        <View style={footerStyles.indicatorContainer}>
+          {slides.map((_, index) => (
+            <View
+              key={index}
+              style={[
+                footerStyles.indicator,
+                currentIndex === index && {opacity: 1},
+              ]}
+            />
+          ))}
+        </View>
 
-      <TouchableOpacity>
-        <Text style={[footerStyles.controls]}>Next</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={goToNextSlide}>
+          <Text style={[footerStyles.controls]}>Next</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -125,8 +151,14 @@ const footerStyles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 80,
-    paddingHorizontal: 50,
     paddingVertical: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  section: {
+    maxWidth: 295,
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -152,13 +184,41 @@ const footerStyles = StyleSheet.create({
 });
 
 const OnBoardingScreen: React.FunctionComponent = () => {
-  const {height} = useWindowDimensions();
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const {width, height} = useWindowDimensions();
+  const flatListRef = React.useRef<FlatList | null>(null);
+
+  const updateCurrentSlideIndex = (
+    e: NativeSyntheticEvent<NativeScrollEvent>,
+  ) => {
+    const contentOffsetX = e.nativeEvent.contentOffset.x;
+    const index = contentOffsetX / width;
+    setCurrentIndex(index);
+  };
+
+  const goToNextSlide = () => {
+    const nextSlide = currentIndex + 1;
+    if (nextSlide !== slides.length) {
+      const offset = nextSlide * width;
+      flatListRef?.current?.scrollToOffset({offset});
+      setCurrentIndex(nextSlide);
+    }
+  };
+
+  const skip = () => {
+    const lastSlideIndex = slides.length - 1;
+    const offset = lastSlideIndex * width;
+    flatListRef?.current?.scrollToOffset({offset});
+    setCurrentIndex(lastSlideIndex);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'#ffffff'} />
       <View style={[{height: height}, styles.listContainer]}>
         <FlatList
+          ref={flatListRef}
+          onMomentumScrollEnd={updateCurrentSlideIndex}
           data={slides}
           pagingEnabled
           contentContainerStyle={styles.flatList}
@@ -167,7 +227,11 @@ const OnBoardingScreen: React.FunctionComponent = () => {
           keyExtractor={item => item.id}
           renderItem={({item}) => <Slide item={item} />}
         />
-        <Footer />
+        <Footer
+          currentIndex={currentIndex}
+          goToNextSlide={goToNextSlide}
+          skip={skip}
+        />
       </View>
     </SafeAreaView>
   );
