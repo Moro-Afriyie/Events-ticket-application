@@ -46,7 +46,12 @@ const slides: ISlide[] = [
   },
 ];
 
-const Slide: React.FunctionComponent<{item: ISlide}> = ({item}) => {
+const Slide: React.FunctionComponent<{item: ISlide} & IFooter> = ({
+  item,
+  skip,
+  goToNextSlide,
+  currentIndex,
+}) => {
   const {width, height} = useWindowDimensions();
 
   return (
@@ -58,6 +63,28 @@ const Slide: React.FunctionComponent<{item: ISlide}> = ({item}) => {
       <View style={[slideStyles.footer, {height: height * 0.38, width: width}]}>
         <Text style={slideStyles.title}>{item.title}</Text>
         <Text style={slideStyles.subTitle}>{item.subTitle}</Text>
+        <View style={[footerStyles.footerContainer, {width: width}]}>
+          <View style={footerStyles.section}>
+            <TouchableOpacity onPress={skip}>
+              <Text style={[footerStyles.controls, {opacity: 0.5}]}>Skip</Text>
+            </TouchableOpacity>
+            <View style={footerStyles.indicatorContainer}>
+              {slides.map((_, index) => (
+                <View
+                  key={index}
+                  style={[
+                    footerStyles.indicator,
+                    currentIndex === index && {opacity: 1},
+                  ]}
+                />
+              ))}
+            </View>
+
+            <TouchableOpacity onPress={goToNextSlide}>
+              <Text style={[footerStyles.controls]}>Next</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -112,49 +139,46 @@ interface IFooter {
   skip: () => void;
 }
 
-const Footer: React.FunctionComponent<IFooter> = ({
-  currentIndex,
-  goToNextSlide,
-  skip,
-}) => {
-  const {width} = useWindowDimensions();
+// const Footer: React.FunctionComponent<IFooter> = ({
+//   currentIndex,
+//   goToNextSlide,
+//   skip,
+// }) => {
+//   const {width} = useWindowDimensions();
 
-  return (
-    <View style={[footerStyles.footerContainer, {width: width}]}>
-      <View style={footerStyles.section}>
-        <TouchableOpacity onPress={skip}>
-          <Text style={[footerStyles.controls, {opacity: 0.5}]}>Skip</Text>
-        </TouchableOpacity>
-        <View style={footerStyles.indicatorContainer}>
-          {slides.map((_, index) => (
-            <View
-              key={index}
-              style={[
-                footerStyles.indicator,
-                currentIndex === index && {opacity: 1},
-              ]}
-            />
-          ))}
-        </View>
+//   return (
+//     <View style={[footerStyles.footerContainer, {width: width}]}>
+//       <View style={footerStyles.section}>
+//         <TouchableOpacity onPress={skip}>
+//           <Text style={[footerStyles.controls, {opacity: 0.5}]}>Skip</Text>
+//         </TouchableOpacity>
+//         <View style={footerStyles.indicatorContainer}>
+//           {slides.map((_, index) => (
+//             <View
+//               key={index}
+//               style={[
+//                 footerStyles.indicator,
+//                 currentIndex === index && {opacity: 1},
+//               ]}
+//             />
+//           ))}
+//         </View>
 
-        <TouchableOpacity onPress={goToNextSlide}>
-          <Text style={[footerStyles.controls]}>Next</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
+//         <TouchableOpacity onPress={goToNextSlide}>
+//           <Text style={[footerStyles.controls]}>Next</Text>
+//         </TouchableOpacity>
+//       </View>
+//     </View>
+//   );
+// };
 
 const footerStyles = StyleSheet.create({
   footerContainer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 80,
-    paddingVertical: 20,
     display: 'flex',
+    marginTop: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 70,
   },
   section: {
     maxWidth: 295,
@@ -225,13 +249,20 @@ const OnBoardingScreen: React.FunctionComponent = () => {
           showsHorizontalScrollIndicator={false}
           horizontal
           keyExtractor={item => item.id}
-          renderItem={({item}) => <Slide item={item} />}
+          renderItem={({item}) => (
+            <Slide
+              currentIndex={currentIndex}
+              goToNextSlide={goToNextSlide}
+              skip={skip}
+              item={item}
+            />
+          )}
         />
-        <Footer
+        {/* <Footer
           currentIndex={currentIndex}
           goToNextSlide={goToNextSlide}
           skip={skip}
-        />
+        /> */}
       </View>
     </SafeAreaView>
   );
