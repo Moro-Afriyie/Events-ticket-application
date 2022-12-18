@@ -178,7 +178,7 @@ const footerStyles = StyleSheet.create({
     marginTop: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 70,
+    marginBottom: 60,
   },
   section: {
     maxWidth: 295,

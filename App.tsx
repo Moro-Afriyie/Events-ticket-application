@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import OnBoardingScreen from './screens/onboarding/Onboarding';
+import OnBoardingScreen from './src/screens/onboarding/Onboarding';
 
 const App = () => {
   // const isDarkMode = useColorScheme() === 'dark';
