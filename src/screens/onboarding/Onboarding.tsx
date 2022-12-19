@@ -131,7 +131,7 @@ const Slide: React.FunctionComponent<{item: ISlide} & IFooter> = ({
 
 const OnBoardingScreen: React.FunctionComponent = () => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const {width, height} = useWindowDimensions();
+  const {width} = useWindowDimensions();
   const flatListRef = React.useRef<FlatList | null>(null);
 
   const updateCurrentSlideIndex = (
@@ -159,9 +159,10 @@ const OnBoardingScreen: React.FunctionComponent = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <SafeAreaView />
       <StatusBar backgroundColor={'#ffffff'} />
-      <View style={[{height: height}, styles.listContainer]}>
+      <View style={styles.listContainer}>
         <FlatList
           ref={flatListRef}
           onMomentumScrollEnd={updateCurrentSlideIndex}
@@ -186,7 +187,7 @@ const OnBoardingScreen: React.FunctionComponent = () => {
           skip={skip}
         /> */}
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -196,6 +197,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   listContainer: {
+    flex: 1,
     position: 'relative',
   },
   flatList: {
@@ -234,7 +236,7 @@ const slideStyles = StyleSheet.create({
   },
   footer: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 10,
     height: 288,
     paddingVertical: 30,
     // paddingHorizontal: 50,
