@@ -10,11 +10,19 @@
 
 import React from 'react';
 import OnBoardingScreen from './src/screens/onboarding/Onboarding';
+import Button from './src/components/_shared/Button';
+import {SafeAreaView, View} from 'react-native';
 
 const App = () => {
   // const isDarkMode = useColorScheme() === 'dark';
 
-  return <OnBoardingScreen />;
+  return (
+    <SafeAreaView>
+      <View>
+        <Button text="sign in" />
+      </View>
+    </SafeAreaView>
+  );
 };
 
 export default App;
