@@ -66,9 +66,10 @@ const SignIn: React.FunctionComponent = () => {
           <Text
             style={{
               textAlign: 'center',
-              marginVertical: 25,
+              marginVertical: 20,
               fontSize: 16,
               lineHeight: 34,
+              color: '#9D9898',
             }}>
             OR
           </Text>
@@ -77,7 +78,7 @@ const SignIn: React.FunctionComponent = () => {
               <View style={[styles.socialLoginButton, styles.shadowProp]}>
                 <Image
                   style={styles.socialImage}
-                  source={require('../../assets/forwardArrow.png')}
+                  source={require('../../assets/google.png')}
                 />
                 <Text style={styles.socialText}>Login with Google</Text>
               </View>
@@ -86,11 +87,20 @@ const SignIn: React.FunctionComponent = () => {
               <View style={[styles.socialLoginButton, styles.shadowProp]}>
                 <Image
                   style={styles.socialImage}
-                  source={require('../../assets/forwardArrow.png')}
+                  source={require('../../assets/facebook.png')}
                 />
-                <Text style={styles.socialText}>Login with Google</Text>
+                <Text style={styles.socialText}>Login with Facebook</Text>
               </View>
             </TouchableWithoutFeedback>
+          </View>
+          <View style={styles.footer}>
+            <Text style={[styles.footerText, {color: '#120D26'}]}>
+              Don’t have an account?
+            </Text>
+            <Text
+              style={[styles.footerText, {marginLeft: 5, color: '#747688'}]}>
+              Sign up
+            </Text>
           </View>
         </View>
       </ScrollView>
@@ -164,30 +174,43 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   socialLoginButton: {
-    width: 271,
-    height: 58,
-    backgroundColor: '#5669FF',
+    width: 273,
+    height: 56,
+    backgroundColor: '#ffffff',
     borderRadius: 15,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    marginBottom: 25,
   },
   socialText: {
     fontSize: 16,
     lineHeight: 25,
+    color: '#120D26',
   },
   socialImage: {
-    width: 30,
-    height: 30,
+    width: 26,
+    height: 26,
+    marginRight: 15,
   },
   shadowProp: {
-    shadowColor: '#6F7EC9',
-    shadowOffset: {width: 0, height: 10},
-    shadowOpacity: 0.25,
+    shadowColor: '#D3D4E2',
+    shadowOffset: {width: 15, height: 0},
+    shadowOpacity: 0.7,
     shadowRadius: 35,
     elevation: 10,
+  },
+  footer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 25,
+  },
+  footerText: {
+    fontSize: 15,
+    lineHeight: 25,
   },
 });
 export default SignIn;
