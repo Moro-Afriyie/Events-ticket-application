@@ -97,10 +97,12 @@ const SignIn: React.FunctionComponent = () => {
             <Text style={[styles.footerText, {color: '#120D26'}]}>
               Don’t have an account?
             </Text>
-            <Text
-              style={[styles.footerText, {marginLeft: 5, color: '#747688'}]}>
-              Sign up
-            </Text>
+            <TouchableWithoutFeedback>
+              <Text
+                style={[styles.footerText, {marginLeft: 5, color: '#747688'}]}>
+                Sign up
+              </Text>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </ScrollView>
