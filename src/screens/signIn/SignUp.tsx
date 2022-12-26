@@ -7,23 +7,22 @@ import {
   Text,
   View,
   Image,
-  Switch,
   TouchableWithoutFeedback,
 } from 'react-native';
 import Button from '../../components/_shared/Button';
-import {useState} from 'react';
 import TextInputWithImageIcon from '../../components/_shared/TextInputWithImageIcon';
 
-const SignIn: React.FunctionComponent = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
+const SignUp: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Image style={styles.logo} source={require('../../assets/logo2.png')} />
+        <Image style={styles.back} source={require('../../assets/Back.png')} />
         <View style={styles.form}>
-          <Text style={styles.heading}>Sign in</Text>
+          <Text style={styles.heading}>Sign Up</Text>
+          <TextInputWithImageIcon
+            imageUrl={require('../../assets/Profile.png')}
+            placeholder={'Full name'}
+          />
           <TextInputWithImageIcon
             imageUrl={require('../../assets/Mail.png')}
             placeholder={'abc@email.com'}
@@ -32,20 +31,11 @@ const SignIn: React.FunctionComponent = () => {
             imageUrl={require('../../assets/Password.png')}
             placeholder={'Your password'}
           />
-          <View style={styles.switchContainer}>
-            <Switch
-              trackColor={{false: '#ffffff', true: '#5669FF'}}
-              thumbColor={isEnabled ? '#ffffff' : '#f4f3f4'}
-              ios_backgroundColor="#ffffff"
-              style={{transform: [{scaleX: 0.6}, {scaleY: 0.6}]}}
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-            />
-            <Text style={styles.text}>Remember Me</Text>
-            <Text style={[styles.text, {marginLeft: 'auto'}]}>
-              Forgot Password?
-            </Text>
-          </View>
+          <TextInputWithImageIcon
+            imageUrl={require('../../assets/Password.png')}
+            placeholder={'Confirm password'}
+          />
+
           <View style={{alignSelf: 'center'}}>
             <Button text="sign in" />
           </View>
@@ -86,7 +76,7 @@ const SignIn: React.FunctionComponent = () => {
             <TouchableWithoutFeedback>
               <Text
                 style={[styles.footerText, {marginLeft: 5, color: '#3D56F0'}]}>
-                Sign up
+                Sign In
               </Text>
             </TouchableWithoutFeedback>
           </View>
@@ -107,11 +97,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 25,
   },
-  logo: {
-    width: 162,
-    height: 114,
+  back: {
+    width: 22,
+    height: 22,
     marginVertical: 30,
-    alignSelf: 'center',
+    marginHorizontal: 30,
   },
   form: {
     paddingHorizontal: 30,
@@ -171,4 +161,4 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
 });
-export default SignIn;
+export default SignUp;
