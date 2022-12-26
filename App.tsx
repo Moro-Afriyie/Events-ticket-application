@@ -12,8 +12,8 @@ import React from 'react';
 import OnBoardingScreen from './src/screens/onboarding/Onboarding';
 import Button from './src/components/_shared/Button';
 import {SafeAreaView, View} from 'react-native';
-import SignIn from './src/screens/signIn/SignIn';
-import SignUp from './src/screens/signIn/SignUp';
+import SignIn from './src/screens/auth/SignIn';
+import SignUp from './src/screens/auth/SignUp';
 
 const App = () => {
   // const isDarkMode = useColorScheme() === 'dark';
