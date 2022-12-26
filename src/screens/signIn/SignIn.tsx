@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import Button from '../../components/_shared/Button';
 import {useState} from 'react';
+import TextInputWithImageIcon from '../../components/_shared/TextInputWithImageIcon';
 
 const SignIn: React.FunctionComponent = () => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -24,7 +25,7 @@ const SignIn: React.FunctionComponent = () => {
         <Image style={styles.logo} source={require('../../assets/logo2.png')} />
         <View style={styles.form}>
           <Text style={styles.heading}>Sign in</Text>
-          <View style={styles.textInputContainer}>
+          {/* <View style={styles.textInputContainer}>
             <Image
               style={styles.textInputImageIcon}
               source={require('../../assets/Mail.png')}
@@ -34,7 +35,15 @@ const SignIn: React.FunctionComponent = () => {
               placeholder="abc@email.com"
               underlineColorAndroid="transparent"
             />
-          </View>
+          </View> */}
+          {/* <TextInputWithImageIcon
+            imageUrl={'Mail.png'}
+            placeholder={'abc@email.com'}
+          />
+          <TextInputWithImageIcon
+            imageUrl={'Your password'}
+            placeholder={'abc@email.com'}
+          /> */}
           <View style={styles.textInputContainer}>
             <Image
               style={styles.textInputImageIcon}
