@@ -14,11 +14,12 @@ import Button from './src/components/_shared/Button';
 import {SafeAreaView, View} from 'react-native';
 import SignIn from './src/screens/auth/SignIn';
 import SignUp from './src/screens/auth/SignUp';
+import Verification from './src/screens/auth/Verification';
 
 const App = () => {
   // const isDarkMode = useColorScheme() === 'dark';
 
-  return <SignUp />;
+  return <Verification />;
 };
 
 export default App;
