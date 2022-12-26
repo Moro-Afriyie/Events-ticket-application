@@ -25,36 +25,14 @@ const SignIn: React.FunctionComponent = () => {
         <Image style={styles.logo} source={require('../../assets/logo2.png')} />
         <View style={styles.form}>
           <Text style={styles.heading}>Sign in</Text>
-          {/* <View style={styles.textInputContainer}>
-            <Image
-              style={styles.textInputImageIcon}
-              source={require('../../assets/Mail.png')}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="abc@email.com"
-              underlineColorAndroid="transparent"
-            />
-          </View> */}
-          {/* <TextInputWithImageIcon
-            imageUrl={'Mail.png'}
+          <TextInputWithImageIcon
+            imageUrl={require('../../assets/Mail.png')}
             placeholder={'abc@email.com'}
           />
           <TextInputWithImageIcon
-            imageUrl={'Your password'}
+            imageUrl={require('../../assets/Password.png')}
             placeholder={'abc@email.com'}
-          /> */}
-          <View style={styles.textInputContainer}>
-            <Image
-              style={styles.textInputImageIcon}
-              source={require('../../assets/Password.png')}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Your password"
-              underlineColorAndroid="transparent"
-            />
-          </View>
+          />
           <View style={styles.switchContainer}>
             <Switch
               trackColor={{false: '#ffffff', true: '#5669FF'}}
