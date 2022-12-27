@@ -14,6 +14,19 @@ import OTPInputView from '@twotalltotems/react-native-otp-input';
 
 const Verification: React.FunctionComponent = () => {
   const [otpCode, setOTPCode] = React.useState('');
+  const [seconds, setSeconds] = React.useState(20);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(prev => prev - 1);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [seconds]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -51,7 +64,7 @@ const Verification: React.FunctionComponent = () => {
             <TouchableWithoutFeedback>
               <Text
                 style={[styles.footerText, {marginLeft: 5, color: '#3D56F0'}]}>
-                0:20
+                {seconds >= 10 ? `0:${seconds}` : `0:0${seconds}`}
               </Text>
             </TouchableWithoutFeedback>
           </View>

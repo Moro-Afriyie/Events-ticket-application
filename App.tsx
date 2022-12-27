@@ -20,7 +20,7 @@ import ResetPassword from './src/screens/auth/ResetPassword';
 const App = () => {
   // const isDarkMode = useColorScheme() === 'dark';
 
-  return <ResetPassword />;
+  return <Verification />;
 };
 
 export default App;
