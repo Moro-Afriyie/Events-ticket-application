@@ -1,31 +1,21 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, View, Image} from 'react-native';
 import Button from '../../components/_shared/Button';
-import OTPInput from '../../components/otp/OTPInput';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 
 const Verification: React.FunctionComponent = () => {
   const [otpCode, setOTPCode] = React.useState('');
-  const [isPinReady, setIsPinReady] = React.useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Image style={styles.back} source={require('../../assets/Back.png')} />
-        <View>
+        <View style={styles.section}>
           <OTPInputView
-            style={{width: '100%', height: 200}}
+            style={{width: '80%', height: 200}}
             pinCount={4}
-            code={otpCode} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
+            code={otpCode}
             onCodeChanged={code => setOTPCode(code)}
             autoFocusOnLoad
             codeInputFieldStyle={styles.underlineStyleBase}
@@ -49,6 +39,11 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
 
+  section: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+
   back: {
     width: 22,
     height: 22,
@@ -61,18 +56,21 @@ const styles = StyleSheet.create({
   },
 
   borderStyleHighLighted: {
-    borderColor: '#03DAC6',
+    borderColor: '#E4DFDF',
   },
 
   underlineStyleBase: {
-    width: 30,
-    height: 45,
-    borderWidth: 0,
+    width: 55,
+    height: 55,
+    borderWidth: 1,
     borderBottomWidth: 1,
+    borderRadius: 12,
+    fontSize: 24,
+    color: '#120D26',
   },
 
   underlineStyleHighLighted: {
-    borderColor: '#03DAC6',
+    borderColor: '#5669FF',
   },
 });
 export default Verification;
