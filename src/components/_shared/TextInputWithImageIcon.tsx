@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     paddingHorizontal: 15,
-    paddingVertical: 17,
     marginBottom: 25,
   },
   textInputImageIcon: {
@@ -51,12 +50,11 @@ const styles = StyleSheet.create({
 
   input: {
     flex: 1,
-    paddingTop: 10,
+    height: '100%',
     paddingRight: 10,
-    paddingBottom: 10,
     paddingLeft: 0,
     marginHorizontal: 10,
-    fontSize: 14,
+    fontSize: 16,
     color: '#747688',
     lineHeight: 23,
   },

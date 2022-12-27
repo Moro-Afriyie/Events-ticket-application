@@ -15,11 +15,12 @@ import {SafeAreaView, View} from 'react-native';
 import SignIn from './src/screens/auth/SignIn';
 import SignUp from './src/screens/auth/SignUp';
 import Verification from './src/screens/auth/Verification';
+import ResetPassword from './src/screens/auth/ResetPassword';
 
 const App = () => {
   // const isDarkMode = useColorScheme() === 'dark';
 
-  return <Verification />;
+  return <ResetPassword />;
 };
 
 export default App;
