@@ -10,6 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-community/clipboard": "^1.5.1",
+    "@twotalltotems/react-native-otp-input": "^1.3.11",
     "react": "18.1.0",
     "react-native": "0.70.6",
     "react-native-shadow-2": "^7.0.6",
