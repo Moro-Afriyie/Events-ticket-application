@@ -7,6 +7,7 @@ import {
   View,
   Image,
   Text,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import Button from '../../components/_shared/Button';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
@@ -39,9 +40,19 @@ const Verification: React.FunctionComponent = () => {
             }}
           />
           <View style={{alignSelf: 'center'}}>
-            <Button text="sign in" />
+            <Button text="continue" />
           </View>
-          <Text>Re-send code in 0:20</Text>
+          <View style={styles.footer}>
+            <Text style={[styles.footerText, {color: '#120D26'}]}>
+              Re-send code in
+            </Text>
+            <TouchableWithoutFeedback>
+              <Text
+                style={[styles.footerText, {marginLeft: 5, color: '#3D56F0'}]}>
+                0:20
+              </Text>
+            </TouchableWithoutFeedback>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -71,9 +82,17 @@ const styles = StyleSheet.create({
   section: {
     display: 'flex',
     alignItems: 'center',
-    margin: 0,
-    borderColor: 'red',
-    borderWidth: 1,
+  },
+  footer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  footerText: {
+    fontSize: 15,
+    lineHeight: 25,
   },
 
   back: {
