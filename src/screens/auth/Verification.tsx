@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View, Image} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+  Image,
+  Text,
+} from 'react-native';
 import Button from '../../components/_shared/Button';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 
@@ -11,9 +18,16 @@ const Verification: React.FunctionComponent = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Image style={styles.back} source={require('../../assets/Back.png')} />
+        <View style={styles.headingContainer}>
+          <Text style={styles.heading}>Verification</Text>
+          <Text style={styles.subHeading}>
+            We've send you the verification code on +1 2620 0323 7631
+          </Text>
+        </View>
+
         <View style={styles.section}>
           <OTPInputView
-            style={{width: '80%', height: 200}}
+            style={{width: '80%', height: 130}}
             pinCount={4}
             code={otpCode}
             onCodeChanged={code => setOTPCode(code)}
@@ -27,6 +41,7 @@ const Verification: React.FunctionComponent = () => {
           <View style={{alignSelf: 'center'}}>
             <Button text="sign in" />
           </View>
+          <Text>Re-send code in 0:20</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -38,10 +53,27 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
   },
-
+  headingContainer: {paddingHorizontal: 30},
+  heading: {
+    fontSize: 24,
+    lineHeight: 32,
+    marginBottom: 15,
+    fontWeight: '500',
+  },
+  subHeading: {
+    fontSize: 15,
+    maxWidth: 244,
+    width: '100%',
+    fontWeight: '400',
+    lineHeight: 25,
+    color: '#120D26',
+  },
   section: {
     display: 'flex',
     alignItems: 'center',
+    margin: 0,
+    borderColor: 'red',
+    borderWidth: 1,
   },
 
   back: {
