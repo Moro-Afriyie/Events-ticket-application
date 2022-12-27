@@ -35,6 +35,8 @@ const Verification: React.FunctionComponent = () => {
             autoFocusOnLoad
             codeInputFieldStyle={styles.underlineStyleBase}
             codeInputHighlightStyle={styles.underlineStyleHighLighted}
+            placeholderCharacter={'-'}
+            placeholderTextColor={'#E4DFDF'}
             onCodeFilled={code => {
               console.log(`Code is ${code}, you are good to go!`);
             }}
